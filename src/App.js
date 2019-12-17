@@ -1,25 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import 'assets/styles/reset.css'
+import Layout from './pages/home/layout.jsx'
+import Detailmain from 'pages/detail/pagedetail/detailmain'
+import Findmore from 'pages/findmore/findmore'
+import { Provider } from 'react-redux'
+import store from './store/index'
+import {  BrowserRouter as Router,Switch,Route,Redirect } from 'react-router-dom'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+    <Provider store={store}>
+        <Switch>
+          <Route path='/' exact render={()=>(
+            <Redirect to='/index'/>
+          )}/>
+          <Route
+            path='/index' 
+            component={Layout}
+          />
+          <Route
+            path='/detail' 
+            component={Detailmain}
+          />
+          <Route
+            path='/findmore' 
+            component={Findmore}
+          />
+        </Switch>
+    </Provider>
+    </Router>
   );
 }
 
