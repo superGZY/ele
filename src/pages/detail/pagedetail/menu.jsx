@@ -4,7 +4,7 @@ import {urlChange} from 'component/script/imgurl'
 import { connect } from 'react-redux'
 const mapState = state => {
     return{
-        rest:state.detail.rest
+        rest:state.getIn(['detail','rest'])
     }
 }
 const mapDispatch = dispatch => ({
@@ -40,7 +40,6 @@ class Menu extends Component{
         //console.log(this.myref.current.scrollTop)
     }
     addtoCar = (restaurant_id,category_id, vfood_id,name,price,quantity) => {
-        console.log(category_id)
         this.props.changecar('addtoCar',{
             restaurant_id:restaurant_id,
             category_id,

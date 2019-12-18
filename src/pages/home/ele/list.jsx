@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 const mapState = state => {
     return{
-        rest:state.detail.rest
+        rest:state.get('detail').rest
     }
 }
 class List extends Component{

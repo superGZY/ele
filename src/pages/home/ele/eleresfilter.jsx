@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 
 const mapState = state => {
     return{
-        list:state.home.list
+        list:state.getIn(['home','list'])
     }
 }
 const mapDispatch = dispatch => ({
@@ -90,7 +90,7 @@ class Eleresfilter extends Component{
             <EleresfilterWrap>
                 <div className="filterName" >
                     <div onClick={this.clicktotop} className={this.state.index===0?'active':''}>
-                        <span >{this.props.list.first || '综合排序'}</span>
+                        <span >{this.props.list.get('first')  || '综合排序'}</span>
                     </div>
                     {
                         this.state.list.map((v, i) => (

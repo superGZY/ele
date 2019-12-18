@@ -16,8 +16,6 @@ export default class Findmore extends Component{
         this.setState({
             data:result.data.data.list,
             count:result.data.data.count
-        }, ()=>{
-            console.log(this.state)
         })
     }
     render(){

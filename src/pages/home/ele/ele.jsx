@@ -4,8 +4,14 @@ import Mintswipe from './mint-swipe'
 import Aids from './Aids'
 import Content from './content'
 import { http } from 'assets/utils/http'
+import { connect } from 'react-redux'
 
-export default class Ele extends React.Component{
+const mapState = state => {
+    return{
+        list:state.getIn(['home','list'])
+    }
+}
+class Ele extends React.Component{
     constructor(){
         super()
         this.state = {
@@ -46,6 +52,7 @@ export default class Ele extends React.Component{
         }
     }
     async componentDidMount(){
+        console.log(123)
         let result = await http({
             url:`/restapi/shopping/v3/restaurants?_page=${this.state.pages}&_limit=8`
         })
@@ -64,6 +71,7 @@ export default class Ele extends React.Component{
         this.ref.current.style.overflow="scroll"
     }
     render(){
+        //console.log(this.props.list)
         return(
         <>
             <div className="mask" onClick={this.handleClick} style={{position:'fixed',left:0,right:0,top:0,bottom:0,zIndex:3,background: 'rgba(0,0,0,.5)',display:'none'}}></div>
@@ -79,3 +87,4 @@ export default class Ele extends React.Component{
         )
     }
 }
+export default connect(mapState)(Ele)

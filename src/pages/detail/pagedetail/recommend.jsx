@@ -3,7 +3,7 @@ import {RecommendWrap} from './styled'
 import { connect } from 'react-redux'
 const mapState = state => {
     return{
-        rest:state.detail.rest
+        rest:state.getIn(['detail','rest'])
     }
 }
 const mapDispatch = dispatch => ({

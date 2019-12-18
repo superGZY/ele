@@ -32,8 +32,6 @@ class Discover extends Component{
         this.setState({
             data:result.data,
             data2:result2.data
-        },()=>{
-            console.log(this.state)
         })
     }
     render(){

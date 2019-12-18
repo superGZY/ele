@@ -13,7 +13,6 @@ export default (state = defaultState, action) =>{
             let restaurant_id = Object.keys(restobj).find((value) => {
                 return value == action.data.restaurant_id
             })
-            console.log(restaurant_id)
             //店铺已存在
             if(restaurant_id){
                 let category_id = Object.keys(restobj[restaurant_id]).find((value) => {
@@ -21,7 +20,7 @@ export default (state = defaultState, action) =>{
                 })
                 //店铺商品数量、总价计算
                 restobj[restaurant_id].restaurant_count += action.data.quantity
-                restobj[restaurant_id].restaurant_total += action.data.quantity * action.data.price
+                restobj[restaurant_id].restaurant_total += action.data.quantity * (action.data.price*10)/10
                 //左边索引已存在
                 if(category_id){
                     let vfood_id = Object.keys(restobj[restaurant_id][category_id]).find((value) => {
@@ -92,7 +91,7 @@ export default (state = defaultState, action) =>{
             }
             //店铺数量、总价减
             restobj2[action.data.restaurant_id].restaurant_count -= action.data.quantity
-            restobj2[action.data.restaurant_id].restaurant_total -= action.data.quantity * action.data.price
+            restobj2[action.data.restaurant_id].restaurant_total -= (action.data.quantity * action.data.price*10)/10
             if(restobj2[action.data.restaurant_id].restaurant_count === 0){
                 delete restobj2[action.data.restaurant_id]
             }
